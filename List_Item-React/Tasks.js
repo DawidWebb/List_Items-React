@@ -3,7 +3,6 @@ class Tasks extends React.Component {
     tasks: [],
     todo: 0,
     done: 0,
-    valueIsDone: true,
     valueName: "",
   };
 
@@ -17,7 +16,7 @@ class Tasks extends React.Component {
     const tasks = this.state.tasks.slice();
     tasks.push({
       id: tasks.length,
-      isDone: false,
+      // isDone: false,
       name: this.state.valueName,
     });
     this.setState({
@@ -27,16 +26,19 @@ class Tasks extends React.Component {
     });
   };
   handlerIsDoneTask = (id) => {
-    const tasks = this.state.tasks.slice();
-    console.log(tasks);
+    console.log("ok");
 
-    const index = tasks.findIndex((task) => task.id === id);
-    tasks[index].style.color = "red";
+    const tasks = this.state.tasks.map((task) => {
+      if (id === task.id) {
+        task.valueIsDone = !task.valueIsDone;
+      }
+      this.setState = {
+        tasks,
+      };
+    });
   };
   handlerDeleteTask = (id) => {
     const tasks = this.state.tasks.slice();
-    console.log(tasks);
-
     const index = tasks.findIndex((task) => task.id === id);
     tasks.splice(index, 1);
     this.setState({
@@ -49,6 +51,7 @@ class Tasks extends React.Component {
         name={task.name}
         key={task.id}
         id={task.id}
+        valueIsDone={false}
         isDone={this.handlerIsDoneTask.bind(this, task.id)}
         delete={this.handlerDeleteTask.bind(this, task.id)}
       />
@@ -56,26 +59,28 @@ class Tasks extends React.Component {
     return (
       <div className="container">
         <header className="head">
+          <div className="head__title">Lista zadań</div>
           <div className="head__todo">
             Zadania do wykonania: {this.state.todo}
           </div>
           <div className="head__done">Zadania wykonane: {this.state.done}</div>
         </header>
-
-        <aside className="addTask">
-          <form className="addTask__form">
-            <input
-              value={this.state.valueName}
-              type="text"
-              className="addTask__name"
-              onChange={this.handleAddTask}
-            />
-          </form>
-          <button className="addTask__btn" onClick={this.handleShowTask}>
-            Dodaj zadanie
-          </button>
-        </aside>
-        <section className="tasks">{tasks}</section>
+        <div className="container__main">
+          <section className="tasks">{tasks}</section>
+          <aside className="addTask">
+            <form className="addTask__form">
+              <input
+                value={this.state.valueName}
+                type="text"
+                className="addTask__name"
+                onChange={this.handleAddTask}
+              />
+            </form>
+            <button className="addTask__btn" onClick={this.handleShowTask}>
+              Dodaj zadanie
+            </button>
+          </aside>
+        </div>
         <footer className="foot">
           <div className="foot__info">@TM</div>
         </footer>
