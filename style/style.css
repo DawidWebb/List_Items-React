@@ -24,6 +24,7 @@
           align-items: center;
   height: 20vh;
   background-color: grey;
+  text-align: center;
 }
 
 .head__title {
@@ -41,20 +42,27 @@
       flex-basis: 50%;
 }
 
-.section {
+.container__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.tasks {
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
   min-height: 30vh;
-  margin-top: 25vh;
+}
+
+.addTask {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  border: 1px solid black;
 }
 
 .isDone {
   text-decoration: line-through;
-}
-
-.aside {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
-  margin-top: 25vh;
 }
 /*# sourceMappingURL=style.css.map */
