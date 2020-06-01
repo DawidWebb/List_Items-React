@@ -16,26 +16,30 @@ class Tasks extends React.Component {
     const tasks = this.state.tasks.slice();
     tasks.push({
       id: tasks.length,
-      // isDone: false,
+      isDone: false,
       name: this.state.valueName,
     });
     this.setState({
       tasks: tasks,
       valueName: "",
-      todo: +1,
+      todo: this.state.todo + 1,
     });
   };
   handlerIsDoneTask = (id) => {
-    console.log("ok");
+    const tasks = this.state.tasks.slice();
+    const index = tasks.findIndex((task) => task.id === id);
+    if (tasks[index].isDone === false) {
+      tasks[index].isDone = true;
+      this.setState({ done: this.state.done + 1 });
+      console.log(tasks[index].isDone);
 
-    const tasks = this.state.tasks.map((task) => {
-      if (id === task.id) {
-        task.valueIsDone = !task.valueIsDone;
-      }
-      this.setState = {
-        tasks,
-      };
-    });
+      return tasks[index].isDone;
+    } else {
+      tasks[index].isDone = false;
+      this.setState({ done: this.state.done - 1 });
+      console.log(tasks[index].isDone);
+      return tasks[index].isDone;
+    }
   };
   handlerDeleteTask = (id) => {
     const tasks = this.state.tasks.slice();
@@ -43,6 +47,7 @@ class Tasks extends React.Component {
     tasks.splice(index, 1);
     this.setState({
       tasks: tasks,
+      todo: this.state.todo - 1,
     });
   };
   render() {
@@ -51,8 +56,8 @@ class Tasks extends React.Component {
         name={task.name}
         key={task.id}
         id={task.id}
-        valueIsDone={false}
-        isDone={this.handlerIsDoneTask.bind(this, task.id)}
+        isDone={this.handlerIsDoneTask}
+        isDoneFn={this.handlerIsDoneTask.bind(this, task.id)}
         delete={this.handlerDeleteTask.bind(this, task.id)}
       />
     ));
