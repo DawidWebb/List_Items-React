@@ -31,15 +31,12 @@ class Tasks extends React.Component {
     if (tasks[index].isDone === false) {
       tasks[index].isDone = true;
       this.setState({ done: this.state.done + 1 });
-      console.log(tasks[index].isDone);
-
-      return tasks[index].isDone;
     } else {
       tasks[index].isDone = false;
       this.setState({ done: this.state.done - 1 });
-      console.log(tasks[index].isDone);
-      return tasks[index].isDone;
     }
+
+    return this.state.tasks[index].isDone;
   };
   handlerDeleteTask = (id) => {
     const tasks = this.state.tasks.slice();
@@ -50,13 +47,14 @@ class Tasks extends React.Component {
       todo: this.state.todo - 1,
     });
   };
+
   render() {
     const tasks = this.state.tasks.map((task) => (
       <Task
         name={task.name}
         key={task.id}
         id={task.id}
-        isDone={this.handlerIsDoneTask}
+        // isDone={this.componentDidMount}
         isDoneFn={this.handlerIsDoneTask.bind(this, task.id)}
         delete={this.handlerDeleteTask.bind(this, task.id)}
       />
