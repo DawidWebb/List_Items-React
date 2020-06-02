@@ -73,6 +73,7 @@ class Tasks extends React.Component {
           <aside className="addTask">
             <form className="addTask__form">
               <input
+                placeholder="Wpisz zadanie..."
                 value={this.state.valueName}
                 type="text"
                 className="addTask__name"
@@ -85,7 +86,7 @@ class Tasks extends React.Component {
           </aside>
         </div>
         <footer className="foot">
-          <div className="foot__info">@TM</div>
+          <div className="foot__info">@developerweb 2020</div>
         </footer>
       </div>
     );
