@@ -1,5 +1,5 @@
 const Task = (props) => (
-  <div className={`tasks__div ${props.isDone === true ? "isDone" : "notDone"}`}>
+  <div>
     Zadaienie nr: {props.id + 1}
     <input onChange={props.isDoneFn} className="tasks__input" type="checkbox" />
     {props.name}

@@ -119,6 +119,15 @@
 
 .notDone {
   text-decoration: none;
+  margin: auto 20px;
+}
+
+.tasks__btn {
+  margin: auto 20px;
+}
+
+.tasks__input {
+  margin: auto 20px;
 }
 
 .foot {
